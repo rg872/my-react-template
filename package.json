@@ -1,0 +1,19 @@
+{
+  "name": "my-react-template",
+  "version": "0.0.1",
+  "description": "my react website project template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rg872/my-react-template.git"
+  },
+  "author": "rg872",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rg872/my-react-template/issues"
+  },
+  "homepage": "https://github.com/rg872/my-react-template#readme"
+}
