@@ -18,6 +18,8 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.printWidth": 100,
+  "css.validate": false,
+  "stylelint.enable": true,
   /* GIT */
   "git.confirmSync": false,
   "git.autofetch": true,
