@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
   OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
-  BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+  StylelintPlugin = require('stylelint-webpack-plugin');
 
 const KILOBYTES = 1024;
 
@@ -24,16 +25,42 @@ module.exports = {
     modules: [__dirname, 'src', 'node_modules'],
     extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.json'],
     alias: {
-      '@src': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src/app/components'),
-      '@images': path.resolve(__dirname, 'src/assets/images'),
+      '~src': path.resolve(__dirname, 'src'),
+      '~components': path.resolve(__dirname, 'src/app/components'),
+      '~pages': path.resolve(__dirname, 'src/app/pages'),
+      '~images': path.resolve(__dirname, 'src/assets/images'),
     },
   },
   module: {
     rules: [
       {
-        test: /\.s?css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        test: /\.css$/,
+        // use: [
+        //   MiniCssExtractPlugin.loader,
+        //   'css-loader',
+        //   {
+        //     loader: 'postcss-loader',
+        //     options: {
+        //       postcssOptions: {
+        //         ident: 'postcss',
+        //         plugins: [require('tailwindcss'), require('autoprefixer')],
+        //       },
+        //     },
+        //   },
+        // ],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                ident: 'postcss',
+                plugins: [require('tailwindcss'), require('autoprefixer')],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -84,11 +111,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
+    new StylelintPlugin({ files: '**/*.css' }),
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].css',
+    //   chunkFilename: '[id].css',
+    // }),
     // new BundleAnalyzerPlugin({ generateStatsFile: true }),
   ],
 };

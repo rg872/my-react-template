@@ -2,9 +2,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@src/*": ["src/*"],
-      "@components/*": ["src/app/components/*"],
-      "@images/*": ["src/assets/images/*"]
+      "~src/*": ["src/*"],
+      "~components/*": ["src/app/components/*"],
+      "~pages/*": ["src/app/pages/*"],
+      "~images/*": ["src/assets/images/*"]
     },
     "outDir": "./dist/",
     "sourceMap": true,

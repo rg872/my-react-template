@@ -4,6 +4,5 @@ node_modules
 dist
 
 # MORE
-.eslintignore
-.eslintrc.js
-webpack*.js
+.*$
+*.config.js
